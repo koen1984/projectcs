@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
 	while True:
 		if len(debug_commands) is 0:
-			user_input = input("> ").split()
+			user_input = raw_input("> ").split()
 		else:
 			user_input = debug_commands[0].split()
 			del(debug_commands[0])
@@ -39,9 +39,9 @@ if __name__ == '__main__':
 				parameter_error = True
 
 			if parameter_error:
-				print("Invalid parameters")
-				print("Correct use: construct [network type]")
-				print("(network types: 1 = Erdos-Reyni, 2 = Watts-Strogatz, 3 = Barabasi-Albert)")
+				print "Invalid parameters"
+				print "Correct use: construct [network type]"
+				print "(network types: 1 = Erdos-Reyni, 2 = Watts-Strogatz, 3 = Barabasi-Albert)"
 
 		elif user_input[0] == "diameter":
 			diameter(graph)
@@ -56,11 +56,11 @@ if __name__ == '__main__':
 			plot(graph)
 
 		else:
-			print("Unknown command. Accepted commands:")
-			print("construct [network type]")
-			print("diameter")
-			print("clustering")
-			print("degree")
-			print("plot")
+			print "Unknown command. Accepted commands:"
+			print "construct [network type]"
+			print "diameter"
+			print "clustering"
+			print "degree"
+			print "plot"
 
-		print()
+		print ""
