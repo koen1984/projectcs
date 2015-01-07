@@ -8,7 +8,7 @@ if __name__ == '__main__':
 	# Hardcoded commands for debugging
 	debug_commands = [
 	"construct 1",
-	"diameter",
+	"degree",
 	"plot"
 	]
 
