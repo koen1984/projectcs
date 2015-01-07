@@ -56,6 +56,9 @@ if __name__ == '__main__':
 		elif user_input[0] == "plot":
 			plot(graph)
 
+		elif user_input[0] == "export":
+			export_GEXF(graph, "output.gexf")
+
 		else:
 			print "Unknown command. Accepted commands:"
 			print "construct [network type]"
