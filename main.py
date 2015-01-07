@@ -7,9 +7,9 @@ if __name__ == '__main__':
 
 	# Hardcoded commands for debugging
 	debug_commands = [
-	"construct 1",
-	"diameter",
-	"plot"
+            "construct 1",
+            "diameter",
+            "plot"
 	]
 
 	while True:
@@ -30,18 +30,21 @@ if __name__ == '__main__':
 				parameter_error = True
 
 			elif user_input[1] == "1":
-				graph = construct_erdos_reyni(0)
+				graph = construct_erdos_reyni(100, 0.01)
+				plot(graph)
 			elif user_input[1] == "2":
-				graph = construct_watts_strogatz(0)
+				graph = construct_watts_strogatz(100, 3, 0.01)
+				plot(graph)
 			elif user_input[1] == "3":
-				graph = construct_barabasi_albert(0)
+				graph = construct_barabasi_albert(100, 5)
+				plot(graph)
 			else:
 				parameter_error = True
 
 			if parameter_error:
-				print "Invalid parameters"
-				print "Correct use: construct [network type]"
-				print "(network types: 1 = Erdos-Reyni, 2 = Watts-Strogatz, 3 = Barabasi-Albert)"
+				print("Invalid parameters")
+				print("Correct use: construct [network type]")
+				print("(network types: 1 = Erdos-Reyni, 2 = Watts-Strogatz, 3 = Barabasi-Albert)")
 
 		elif user_input[0] == "diameter":
 			diameter(graph)
@@ -56,11 +59,11 @@ if __name__ == '__main__':
 			plot(graph)
 
 		else:
-			print "Unknown command. Accepted commands:"
-			print "construct [network type]"
-			print "diameter"
-			print "clustering"
-			print "degree"
-			print "plot"
+			print("Unknown command. Accepted commands:")
+			print("construct [network type]")
+			print("diameter")
+			print("clustering")
+			print("degree")
+			print("plot")
 
-		print ""
+		print()
