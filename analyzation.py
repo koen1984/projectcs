@@ -32,4 +32,4 @@ def degree_distribution(graph):
 	plt.show()
 
 def algebraic_connectivity(graph):
-    return nx.algebraic_connectivity(graph)
+	return nx.algebraic_connectivity(graph)

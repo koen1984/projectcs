@@ -91,29 +91,29 @@ if __name__ == '__main__':
 				path = user_input[1]
 			export_GEXF(graph, path)
 
-        # calculate algebraic connectivity of graph
-        elif user_input[0] == "ac":
-            ac_vals = []
-            # number of nodes to remove from graph
-            nr_nodes_to_remove = nx.number_of_nodes(graph) / 10
-            for i in range(nr_nodes_to_remove):
-                ac_vals.append(nx.algebraic_connectivity(graph))
-                rand_node = random.randint(1, nx.number_of_nodes(graph))
-                try:
-                    graph.remove_node(rand_node)
-                except:
-                    i -= 1
-            plt.plot(ac_vals)
-            plt.xlabel("Number of nodes removed")
-            plt.ylabel("Algebraic connnectivity of graph")
-            plt.show()
-            # print ac_vals
+		# calculate algebraic connectivity of graph
+		elif user_input[0] == "ac":
+			ac_vals = []
+			# number of nodes to remove from graph
+			nr_nodes_to_remove = nx.number_of_nodes(graph) / 10
+			for i in range(nr_nodes_to_remove):
+				ac_vals.append(nx.algebraic_connectivity(graph))
+				rand_node = random.randint(1, nx.number_of_nodes(graph))
+				try:
+					graph.remove_node(rand_node)
+				except:
+					i -= 1
+			plt.plot(ac_vals)
+			plt.xlabel("Number of nodes removed")
+			plt.ylabel("Algebraic connnectivity of graph")
+			plt.show()
+			# print ac_vals
 
-        elif user_input[0] == "gc_decay":
-            giant_component = sorted(nx.connected_component_subgraphs(graph), key=len, reverse=True)[0]
-            print len(giant_component)
+		elif user_input[0] == "gc_decay":
+			giant_component = sorted(nx.connected_component_subgraphs(graph), key=len, reverse=True)[0]
+			print len(giant_component)
 
-        else:
+		else:
 			print "Unknown command. Accepted commands:"
 			print "construct [network type]"
 			print "diameter"
