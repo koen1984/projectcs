@@ -30,3 +30,6 @@ def degree_distribution(graph):
 
 	# plt.savefig("degree_histogram.png")
 	plt.show()
+
+def algebraic_connectivity(graph):
+    return nx.algebraic_connectivity(graph)
