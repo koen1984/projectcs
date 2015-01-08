@@ -10,8 +10,8 @@ INFECTED = 1
 RECOVERED = 2
 
 # Simulation constants
-MAX_SIMULATION_TIME = 25.0
-TRIALS = 2
+MAX_SIMULATION_TIME = 100
+TRIALS = 1
 
 def simulate(graph):
 	# Initualize all nodes as susceptible
@@ -40,7 +40,7 @@ class SIRSimple(NetworkAgent):
 
 	def __init__(self, state, initialiser):
 		NetworkAgent.__init__(self, state, initialiser)
-		self.infection_probability = 0.05 # 5% chance
+		self.infection_probability = 0.06 # 5% chance
 		self.infection_end = 5
 
 	def Run(self):
@@ -117,7 +117,7 @@ def temporary_export_to_gexf_fun(path, name, output, trial=0):
 		<gexf xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd" version="1.2">
 				<graph mode="dynamic" defaultedgetype="undirected" timeformat="integer">
 						<attributes class="node" mode="dynamic">
-								<attribute id="0" title="color" type="string"/>
+								<attribute id="0" title="color" type="integer"/>
 						</attributes>
 						<nodes>
 		""")
@@ -127,11 +127,11 @@ def temporary_export_to_gexf_fun(path, name, output, trial=0):
 		output_file.write('<node id="{0}" label="{0}"><attvalues>'.format(node))
 		for state in range(len(nodes_states[node])):
 			if nodes_states[node][state][1] is SUSCEPTIBLE:
-				state_str = '255,0,0'
+				state_str = '0'
 			elif nodes_states[node][state][1] is INFECTED:
-				state_str = '0,255,0'
+				state_str = '1'
 			else:
-				state_str = '0,0,255'
+				state_str = '2'
 
 			start = nodes_states[node][state][0]
 
@@ -139,7 +139,6 @@ def temporary_export_to_gexf_fun(path, name, output, trial=0):
 			if state is len(nodes_states[node]) - 1:
 				output_file.write('<attvalue for="0" value="{}" start="{}"/>'.format(state_str, start))
 			else:
-				print state, len(nodes_states[node])
 				end = nodes_states[node][state + 1][0]
 
 				output_file.write('<attvalue for="0" value="{}" start="{}" end="{}"/>'.format(state_str, start, end))
