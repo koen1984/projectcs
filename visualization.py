@@ -6,4 +6,10 @@ def plot(graph):
 	plt.show()
 
 def export_GEXF(graph, path):
-	nx.write_gexf(graph, path)
+	if graph is None:
+		print "Error: no graph to export"
+	elif path is None or path == "":
+		print "Error: no path to export to"
+	else:
+		nx.write_gexf(graph, path)
+		print "Exported to " + path

@@ -23,26 +23,47 @@ if __name__ == '__main__':
 
 		# Construct graph
 		elif user_input[0] == "construct":
-			parameter_error = False
-			if len(user_input) is not 2:
-				parameter_error = True
-
-			elif user_input[1] == "1":
-				graph = construct_erdos_reyni(100, 0.01)
-			elif user_input[1] == "2":
-				graph = construct_watts_strogatz(100, 3, 0.01)
-			elif user_input[1] == "3":
-				graph = construct_barabasi_albert(100, 5)
-			else:
-				parameter_error = True
-
-			if graph is not None:
-				plot(graph)
-
-			if parameter_error:
+			error = False
+			if len(user_input) is 1:
 				print "Invalid parameters"
 				print "Correct use: construct [network type]"
 				print "(network types: 1 = Erdos-Reyni, 2 = Watts-Strogatz, 3 = Barabasi-Albert)"
+				error = True
+
+			elif user_input[1] == "1":
+				if len(user_input) is not 4:
+					nNodes = 100
+					prob = 0.1
+				else:
+					nNodes = int(user_input[2])
+					prob = float(user_input[3])
+				graph = construct_erdos_reyni(nNodes, prob)
+
+			elif user_input[1] == "2":
+				if len(user_input) is not 5:
+					nNodes = 100
+					nNeighbours = 4
+					prob = 0.1
+				else:
+					nNodes = int(user_input[2])
+					nNeighbours = int(user_input[3])
+					prob = float(user_input[4])
+				graph = construct_watts_strogatz(nNodes, nNeighbours, prob)
+
+			elif user_input[1] == "3":
+				if len(user_input) is not 4:
+					nNodes = 100
+					nNeighbours = 4
+				else:
+					nNodes = int(user_input[2])
+					nNeighbours = int(user_input[3])
+				graph = construct_barabasi_albert(nNodes, nNeighbours)
+
+			else:
+				error = True
+
+			if not error and graph is not None:
+				plot(graph)
 
 		elif user_input[0] == "diameter":
 			diameter(graph)
@@ -57,7 +78,10 @@ if __name__ == '__main__':
 			plot(graph)
 
 		elif user_input[0] == "export":
-			export_GEXF(graph, "output.gexf")
+			path = "output.gexf"
+			if len(user_input) is 2:
+				path = user_input[1]
+			export_GEXF(graph, path)
 
 		else:
 			print "Unknown command. Accepted commands:"
