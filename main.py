@@ -1,5 +1,6 @@
 from construction import *
 from analyzation import *
+from SIRmodel import *
 from visualization import *
 
 if __name__ == '__main__':
@@ -76,6 +77,12 @@ if __name__ == '__main__':
 
 		elif user_input[0] == "plot":
 			plot(graph)
+
+		elif user_input[0] == "simulate":
+			simulate(graph)
+
+		elif user_input[0] == "plotSim":
+			plotSim()
 
 		elif user_input[0] == "export":
 			path = "output.gexf"
